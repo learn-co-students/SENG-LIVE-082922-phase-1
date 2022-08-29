@@ -2,7 +2,7 @@
 ## SWBAT
 - [ ] Describe functions and their central importance in JS
 - [ ] Review syntax differences between regular functions and arrow functions
-- [ ]Explain the differences between:
+- [ ] Explain the differences between:
     - [ ] Block scope
     - [ ] Function scope
     - [ ] Global scope
