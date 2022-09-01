@@ -52,10 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 //Invoking functions
-    renderHeader(bookStore)
-    renderFooter(bookStore)
-    bookStore.inventory.forEach(renderBookCard)
-    document.querySelector('#book-form').addEventListener('submit', handleForm)
-
-
+    renderHeader(bookStore);
+    renderFooter(bookStore);
+    bookStore.inventory.forEach(renderBookCard);
+    document.querySelector('#book-form').addEventListener('submit', handleForm);
 })
