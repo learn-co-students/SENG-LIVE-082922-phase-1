@@ -71,5 +71,4 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch(e => console.error(e))
 
     document.querySelector('#book-form').addEventListener('submit', handleForm)
-
 })
