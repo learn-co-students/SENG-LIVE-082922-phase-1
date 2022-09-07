@@ -28,7 +28,7 @@
   "books": [
     {
       "id": 1,
-      "title": "Eloquent JavaScript: A Modern Introduction to Programming",
+      "title": "The Best Book Ever",
       "author": "Marjin Haverbeke",
       "price": 10,
       "reviews": [
@@ -37,7 +37,7 @@
           "content": "Good book, but not great for new coders"
         }
       ],
-      "inventory": "15",
+      "inventory": "123456789",
       "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51IKycqTPUL._SX218_BO1,204,203,200_QL40_FMwebp_.jpg"
     },
     {
