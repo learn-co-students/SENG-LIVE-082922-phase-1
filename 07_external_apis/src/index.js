@@ -1,3 +1,16 @@
+function pullPokemon(name) {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${name}/`)
+    .then(res => res.json())
+    .then(data => console.log(data));
+}
+
+// Events => Submit
+
+// pullPokemon('mewtwo');
+// pullPokemon('pikachu');
+
+// console.log(apiKey);
+
 document.addEventListener('DOMContentLoaded', () => {
     
     // Fetch Requests 
@@ -174,19 +187,77 @@ document.addEventListener('DOMContentLoaded', () => {
             <form id="api-Search">
                 <label>API Search<label>
                 <input type="text" name="search"></input>
-                <input type="submit"></input>
             </form>
+            <div class="list">
+                <ul id="search-list">
+                </ul>
+            </div>
             `;
 
-            document.querySelector('#api-search').addEventListener('submit', handleAPIQuery);
+            
+            document.querySelector('#api-search').search.addEventListener('keypress', e => handleAPIQuery(e.target.value));
         }
         //Handles Google Books API search
-        function handleAPIQuery(e){
-            e.preventDefault();
-            const search = e.target.search.value;
+        function handleAPIQuery(search){
+            // e.preventDefault();
+            // const search = e.target.search.value;
 
             // simple test to start
-            console.log(search);
+            fetch(`https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=10&key=${apiKey}`)
+            .then(res => res.json())
+            .then(books => { 
+                
+                // clear out list of books before next rendering
+                document.querySelector('#search-list').textContent = '';
+                
+                // render the latest list of book results
+                books.items.forEach(book => {
+                    renderSearchCard(book);
+                })
+            });
+        }
+
+        function renderSearchCard(book) {
+            // div => sub-container with class of "search-list"
+                // h3 => title
+                // h4 => author(s)
+                // p => summary
+
+            // Create elements
+            const searchCard = document.createElement('li');
+            const title = document.createElement('h3');
+            const authorList = document.createElement('h4');
+            const summary = document.createElement('p');
+            const img = document.createElement('img');
+
+            const authors = book.volumeInfo.authors;
+
+            // Set Content for DOM Elements
+            title.textContent = book.volumeInfo.title;
+            
+            // if (book.volumeInfo.authors.length > 1) {
+            //     authorList.textContent = book.volumeInfo.authors.join(' and ')
+            // } else {
+            //     authorList.textContent = book.volumeInfo.authors;
+            // }
+
+            // Ternary Operator
+            // CONDITION ? IF TRUE : IF FALSE 
+            
+            authors.length > 1 ? authorList.textContent = authors.join(' and ') : authorList.textContent = authors;
+            summary.textContent = book.volumeInfo.description;
+
+            searchCard.className = 'search-list';
+            
+            if (book.volumeInfo.imageLinks) {
+                img.src = book.volumeInfo.imageLinks.smallThumbnail;
+            } else {
+                img.src = 'path/to/placeholder/image';
+            }
+
+            // Append as necessary
+            searchCard.append(title,img,authorList,summary);
+            document.querySelector('#search-list').append(searchCard); 
         }
 
         function loadPage() {

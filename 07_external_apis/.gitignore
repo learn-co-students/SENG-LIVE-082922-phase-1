@@ -1,1 +1,7 @@
+# SECURITY
+
+# /src/secret/*
+
+# /src/secret/keys.js
+
 /src/keys.js
